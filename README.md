@@ -5,6 +5,7 @@ This is my 2018 Summer Research at Carnegie Mellon University with Professor Rac
 Table of Content:
 
 Programs
+
     No Host Z
       Filters Plot no HostZ.py: Make filter information plot
       Plot_018.py: Single plot of light curve data for one SN
@@ -20,6 +21,7 @@ Programs
       Plot_All_SNIa_with.py: Make a pdf file containing plots of all the SNIa; Can be adjusted to do it for other types
 
 Results
+
     No Host Z
       Filters_no.png: Filter information plot, result of ‘Filters Plot no HostZ.py’
       SN Types and frequencies: {‘-9': 17068, '1 ': 834, '22': 236, '32': 73, '33': 62, '21': 48, '3 ': 13, '23': 13}
