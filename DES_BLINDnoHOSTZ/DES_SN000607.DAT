@@ -1,0 +1,35 @@
+SURVEY: DES   
+SNID:   607   
+IAUC:    UNKNOWN 
+SNTYPE:  22 
+FILTERS: griz 
+RA:      34.500000  deg 
+DECL:    -5.500000  deg 
+FAKE:    3   (=> BLIND-TEST simulation) 
+MWEBV:   0.0227    MW E(B-V) 
+REDSHIFT_SPEC:     0.3920 +-  0.0050  
+ 
+
+
+# ============================================ 
+# TERSE LIGHT CURVE OUTPUT: 
+#
+NOBS: 16 
+NVAR: 5 
+VARLIST:  MJD  FLT FIELD   FLUXCAL   FLUXCALERR   
+OBS:  56317.066  z NULL   3.088e+01   4.289e+00  
+OBS:  56321.035  g NULL   3.153e+01   3.010e+00  
+OBS:  56321.043  r NULL   5.854e+01   1.773e+00  
+OBS:  56321.066  i NULL   5.223e+01   3.375e+00  
+OBS:  56326.039  z NULL   4.609e+01   2.749e+00  
+OBS:  56333.043  g NULL   1.020e+02   2.761e+00  
+OBS:  56333.051  r NULL   8.251e+01   2.098e+00  
+OBS:  56334.043  i NULL   7.206e+01   2.578e+00  
+OBS:  56335.043  z NULL   7.934e+01   3.695e+00  
+OBS:  56344.992  g NULL   1.013e+02   4.796e+00  
+OBS:  56345.000  r NULL   1.059e+02   2.740e+00  
+OBS:  56345.016  i NULL   1.018e+02   3.953e+00  
+OBS:  56345.992  z NULL   1.107e+02   4.242e+00  
+OBS:  56349.996  g NULL   9.874e+01   4.447e+00  
+OBS:  56350.004  r NULL   1.105e+02   2.940e+00  
+OBS:  56350.996  i NULL   1.138e+02   3.709e+00  
