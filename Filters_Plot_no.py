@@ -24,3 +24,5 @@ plt.ylabel('Filter Transmission')
 
 plt.legend()
 plt.show()
+
+#guoasdfklshdzlklgl mdl;ghfhxdgk
