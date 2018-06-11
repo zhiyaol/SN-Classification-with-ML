@@ -6,11 +6,11 @@ import re
 from astropy.io import ascii
 from astropy.table import Table
 
-list = ascii.read('DES_BLIND+HOSTZ.LIST', data_start = 0)
+list = ascii.read('DES_BLIND+HOSTZ/DES_BLIND+HOSTZ.LIST', data_start = 0)
 i=0
 SNIa = []
 for i in range(18320):
-    with open(list['DES_SN000041.DAT'][i]) as file:
+    with open('DES_BLIND+HOSTZ/'+list['DES_SN000041.DAT'][i]) as file:
         for line in file:
             line = re.findall(r'SNTYPE: ?...', line)
             if line!= []:

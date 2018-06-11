@@ -2,7 +2,7 @@ import numpy as np
 from astropy.io import ascii
 import matplotlib.pyplot as plt
 
-f = open('DES_SN000105.DAT', 'r')
+f = open('DES_BLIND+HOSTZ/DES_SN000105.DAT', 'r')
 lines = f.read()
 print (lines)
 f.close()
@@ -13,7 +13,7 @@ rdr.data.splitter.delimiter = ' '
 rdr.header.start_line = 14
 rdr.data.start_line = 15
 rdr.data.end_line = None
-t = rdr.read('DES_SN000105.DAT')
+t = rdr.read('DES_BLIND+HOSTZ/DES_SN000105.DAT')
 MJD = t['MJD']
 FLT = t['FLT']
 FIELD = t['FIELD']

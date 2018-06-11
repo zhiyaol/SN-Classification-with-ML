@@ -4,7 +4,7 @@
 from astropy.io import ascii
 import matplotlib.pyplot as plt
 
-SNIa_list = ascii.read('SNIa_List.dat')
+SNIa_list = ascii.read('SNIa_List_no.dat')
 
 import matplotlib.backends.backend_pdf
 import random
@@ -28,7 +28,7 @@ while i<834: #adjust for other types
         rdr.header.start_line = 12
         rdr.data.start_line = 13
         rdr.data.end_line = None
-        t = rdr.read(SNIa_list['SNIa List'][i]) #adjust for other types
+        t = rdr.read('DES_BLINDnoHOSTZ/' + SNIa_list['SNIa List'][i]) #adjust for other types
         MJD = t['MJD']
         FLT = t['FLT']
         FIELD = t['FIELD']

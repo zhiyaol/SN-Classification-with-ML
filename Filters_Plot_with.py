@@ -3,19 +3,19 @@ import astropy
 from astropy.io import ascii
 import matplotlib.pyplot as plt
 
-g = ascii.read('DES_g.dat')
+g = ascii.read('DES_BLIND+HOSTZ/DES_g.dat')
 g_W = g['col1']
 g_P = g['col2']
 
-r = ascii.read('DES_r.dat')
+r = ascii.read('DES_BLIND+HOSTZ/DES_r.dat')
 r_W = r['col1']
 r_P = r['col2']
 
-i = ascii.read('DES_i.dat')
+i = ascii.read('DES_BLIND+HOSTZ/DES_i.dat')
 i_W = i['col1']
 i_P = i['col2']
 
-z = ascii.read('DES_z.dat')
+z = ascii.read('DES_BLIND+HOSTZ/DES_z.dat')
 z_W = z['col1']
 z_P = z['col2']
 

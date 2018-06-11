@@ -25,7 +25,7 @@ while i<879:
         rdr.header.start_line = 14
         rdr.data.start_line = 15
         rdr.data.end_line = None
-        t = rdr.read(SNIa_list['SNIa List'][i])
+        t = rdr.read('DES_BLIND+HOSTZ/' + SNIa_list['SNIa List'][i])
         MJD = t['MJD']
         FLT = t['FLT']
         FIELD = t['FIELD']

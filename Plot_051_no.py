@@ -1,7 +1,7 @@
 from astropy.io import ascii
 import matplotlib.pyplot as plt
 
-f = open('DES_BLINDnoHOSTZ.README', 'r')
+f = open('DES_BLINDnoHOSTZ/DES_BLINDnoHOSTZ.README', 'r')
 lines = f.read()
 print (lines)
 f.close()
@@ -12,7 +12,7 @@ rdr.data.splitter.delimiter = ' '
 rdr.header.start_line = 12
 rdr.data.start_line = 13
 rdr.data.end_line = None
-t = rdr.read('DES_SN000051.DAT')
+t = rdr.read('DES_BLINDnoHOSTZ/DES_SN000051.DAT')
 MJD = t['MJD'] #Modified Julian Date
 FLT = t['FLT']
 FIELD = t['FIELD']
