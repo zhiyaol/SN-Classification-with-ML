@@ -1,10 +1,10 @@
 from astropy.io import ascii
 import matplotlib.pyplot as plt
 
-f = open('DES_BLINDnoHOSTZ/DES_BLINDnoHOSTZ.README', 'r')
+'''f = open('Type3_List_no.dat', 'r')
 lines = f.read()
 print (lines)
-f.close()
+f.close()'''
 
 rdr = ascii.get_reader(Reader=ascii.Basic)
 rdr.header.splitter.delimiter = ' '

@@ -4,17 +4,17 @@
 from astropy.io import ascii
 import matplotlib.pyplot as plt
 
-SNIa_list = ascii.read('SNIa_List_no.dat')
+SN_list = ascii.read('no_Type21_List.dat') #adjust for other types
 
 import matplotlib.backends.backend_pdf
 import random
 
-out_pdf = r'SNIa_Plots_noZ.pdf' #adjust for other types
+out_pdf = r'no_Type21_Plots.pdf' #adjust for other types
 
 pdf = matplotlib.backends.backend_pdf.PdfPages(out_pdf)
 i = 0
 figs = plt.figure()
-while i<834: #adjust for other types
+while i<48: #adjust for other types
     plot_num = 321
     fig = plt.figure(figsize=(10, 8))
     for x in range(6):
@@ -28,7 +28,7 @@ while i<834: #adjust for other types
         rdr.header.start_line = 12
         rdr.data.start_line = 13
         rdr.data.end_line = None
-        t = rdr.read('DES_BLINDnoHOSTZ/' + SNIa_list['SNIa List'][i]) #adjust for other types
+        t = rdr.read('DES_BLINDnoHOSTZ/' + SN_list['21 List'][i]) #adjust for other types
         MJD = t['MJD']
         FLT = t['FLT']
         FIELD = t['FIELD']
@@ -38,13 +38,29 @@ while i<834: #adjust for other types
         plt.errorbar(MJD[FLT=='r'], FLUXCAL[FLT=='r'], FLUXCALERR[FLT=='r'], capsize = 4, label='r', color = 'coral')
         plt.errorbar(MJD[FLT=='i'], FLUXCAL[FLT=='i'], FLUXCALERR[FLT=='i'], capsize = 4, label='i', color = 'indianred')
         plt.errorbar(MJD[FLT=='z'], FLUXCAL[FLT=='z'], FLUXCALERR[FLT=='z'], capsize = 4, label='z', color = 'gray')
-        plt.title('%s no host-galaxy photo-z; SNTYPE: 1' % SNIa_list['SNIa List'][i]) #adjust for other types
+        plt.title('%s no host-galaxy photo-z; SNTYPE: 21' % SN_list['21 List'][i]) #adjust for other types
         plt.xlabel('Modified Julian Date')
         plt.ylabel('Calibrated Flux')
         plt.legend()
         plot_num += 1
         i+=1
-        if i>=834: break #adjust for other types
+        if i>=48: break #adjust for other types
     pdf.savefig(fig)
 
 pdf.close()
+
+'''
+SNIa_list = ascii.read('no_SNIa_List.dat')
+out_pdf = r'no_SNIa_Plots.pdf
+while i<834:
+t = rdr.read('DES_BLINDnoHOSTZ/' + SN_list['SNIa List'][i])
+plt.title('%s no host-galaxy photo-z; SNTYPE: 1' % SN_list['SNIa List'][i])
+if i>=834: break
+
+SN_list = ascii.read('no_Type21_List.dat')
+out_pdf = r'no_Type21_Plots.pdf'
+while i<48:
+t = rdr.read('DES_BLINDnoHOSTZ/' + SN_list['21 List'][i])
+plt.title('%s no host-galaxy photo-z; SNTYPE: 21' % SN_list['21 List'][i])
+if i>=48: break
+'''
