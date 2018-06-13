@@ -1,17 +1,17 @@
 from astropy.io import ascii
 import matplotlib.pyplot as plt
 
-SN_list = list = ascii.read('with_SNIa_List.dat') #adjust for other types
+SN_list = list = ascii.read('with_Type-9_List.dat') #adjust for other types
 
 import matplotlib.backends.backend_pdf
 import random
 
-out_pdf = r'with_SNIa_Plots.pdf' #adjust for other types
+out_pdf = r'with_Type-9_Plots.pdf' #adjust for other types
 
 pdf = matplotlib.backends.backend_pdf.PdfPages(out_pdf)
 i = 0
 figs = plt.figure()
-while i<879: #adjust for other types
+while i<60: #adjust for other types
     plot_num = 321
     fig = plt.figure(figsize=(10, 8))
     for x in range(6):
@@ -25,23 +25,32 @@ while i<879: #adjust for other types
         rdr.header.start_line = 14
         rdr.data.start_line = 15
         rdr.data.end_line = None
-        t = rdr.read('DES_BLIND+HOSTZ/' + SN_list['SNIa List'][i]) #adjust for other types
-        MJD = t['MJD']
-        FLT = t['FLT']
-        FIELD = t['FIELD']
-        FLUXCAL = t['FLUXCAL']
+        index = random.randint(284*i,284*i+283) #get a random one in 60 evenly divided area
+        t = rdr.read('DES_BLIND+HOSTZ/' + SN_list['-9 List'][index]) #adjust for other types
+        
         FLUXCALERR = t['FLUXCALERR']
-        plt.errorbar(MJD[FLT=='g'], FLUXCAL[FLT=='g'], FLUXCALERR[FLT=='g'], capsize = 4, label='g', color = 'forestgreen') 
-        plt.errorbar(MJD[FLT=='r'], FLUXCAL[FLT=='r'], FLUXCALERR[FLT=='r'], capsize = 4, label='r', color = 'coral')
-        plt.errorbar(MJD[FLT=='i'], FLUXCAL[FLT=='i'], FLUXCALERR[FLT=='i'], capsize = 4, label='i', color = 'indianred')
-        plt.errorbar(MJD[FLT=='z'], FLUXCAL[FLT=='z'], FLUXCALERR[FLT=='z'], capsize = 4, label='z', color = 'gray')
-        plt.title('%s with host-galaxy photo-z; SNTYPE: 1' % SN_list['SNIa List'][i]) #adjust for other types
+        MJD = t['MJD']
+        UMJD = MJD[FLUXCALERR>0]
+        FLT = t['FLT']
+        UFLT = FLT[FLUXCALERR>0]
+        FIELD = t['FIELD']
+        UFIELD = FIELD[FLUXCALERR>0]
+        FLUXCAL = t['FLUXCAL']
+        UFLUXCAL = FLUXCAL[FLUXCALERR>0]
+        UFLUXCALERR = FLUXCALERR[FLUXCALERR>0]
+
+        plt.errorbar(UMJD[UFLT=='g'], UFLUXCAL[UFLT=='g'], UFLUXCALERR[UFLT=='g'], capsize = 4, label='g')
+        plt.errorbar(UMJD[UFLT=='r'], UFLUXCAL[UFLT=='r'], UFLUXCALERR[UFLT=='r'], capsize = 4, label='r')
+        plt.errorbar(UMJD[UFLT=='z'], UFLUXCAL[UFLT=='z'], UFLUXCALERR[UFLT=='z'], capsize = 4, label='z')
+        plt.errorbar(UMJD[UFLT=='i'], UFLUXCAL[UFLT=='i'], UFLUXCALERR[UFLT=='i'], capsize = 4, label='i')
+        
+        plt.title('%s with host-galaxy photo-z; SNTYPE: -9' % SN_list['-9 List'][index]) #adjust for other types
         plt.xlabel('Modified Julian Date')
         plt.ylabel('Calibrated Flux')
         plt.legend()
         plot_num += 1
         i+=1
-        if i>=879: break #adjust for other types
+        if i>=60: break #adjust for other types
     pdf.savefig(fig)
 
 pdf.close()

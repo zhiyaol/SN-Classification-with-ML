@@ -14,12 +14,12 @@ for i in range(18347):
             line = re.findall(r'SNTYPE: ?...', line)
             if line!= []:
                 x = line
-                if ((x[0][9]=='3') and (x[0][10]==' ')): #adjust for other types
+                if ((x[0][9]=='1') and (x[0][10]==' ')): #adjust for other types
                     SN = SN+[list['DES_SN000018.DAT'][i]]
     i+=1
     
-data = Table({'3 List': SN}, names=['3 List']) #adjust for other types
-ascii.write(data, 'Type3_List_no.dat') #adjust for other types
+data = Table({'SNIa List': SN}, names=['SNIa List']) #adjust for other types
+ascii.write(data, 'no_SNIa_List.dat') #adjust for other types
 
 '''
 if ((x[0][9]=='1') and (x[0][10]==' '))
