@@ -28,9 +28,11 @@ This is my 2018 Summer Research at Carnegie Mellon University with Professor Rac
      - SNIa_List_no.dat
      - Type\*\*_List_no.dat
      - SNIa_Plots_noZ.pdf: *Contains all the SNIa light curve data plots* 
+     - Type\*\*_Plots_no.pdf
    - With Host Z
      - Filters_with.png: *Filter information plot*
      - SN Types and frequencies: *{'-9': 17064, '1 ': 879, '22': 218, '32': 55, '21': 44, '33': 45, '3 ': 13, '23': 2}*
      - SNIa_List_with.dat
-     - Type\*\*_List_no.dat
+     - Type\*\*_List_with.dat
      - SNIa_Plots_with.pdf: *Contains all the SNIa light curve data plots*
+     - Type\*\*_Plots_with.pdf
