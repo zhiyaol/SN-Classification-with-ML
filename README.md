@@ -25,8 +25,12 @@ This is my 2018 Summer Research at Carnegie Mellon University with Professor Rac
    - No Host Z
      - Filters_no.png: *Filter information plot*
      - SN Types and frequencies: *{‘-9': 17068, '1 ': 834, '22': 236, '32': 73, '33': 62, '21': 48, '3 ': 13, '23': 13}*
+     - SNIa_List_no.dat
+     - Type\*\*_List_no.dat
      - SNIa_Plots_noZ.pdf: *Contains all the SNIa light curve data plots* 
    - With Host Z
      - Filters_with.png: *Filter information plot*
      - SN Types and frequencies: *{'-9': 17064, '1 ': 879, '22': 218, '32': 55, '21': 44, '33': 45, '3 ': 13, '23': 2}*
+     - SNIa_List_with.dat
+     - Type\*\*_List_no.dat
      - SNIa_Plots_with.pdf: *Contains all the SNIa light curve data plots*
