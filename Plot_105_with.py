@@ -2,12 +2,13 @@ import numpy as np
 from astropy.io import ascii
 import matplotlib.pyplot as plt
 
-f = open('no_SNIa_List.dat', 'r')
+f = open('DES_BLINDnoHOSTZ/DES_SN000018.DAT', 'r')
 lines = f.read()
 print (lines)
 f.close()
 
-'''rdr = ascii.get_reader(Reader=ascii.Basic)
+
+rdr = ascii.get_reader(Reader=ascii.Basic)
 rdr.header.splitter.delimiter = ' '
 rdr.data.splitter.delimiter = ' '
 rdr.header.start_line = 14
@@ -34,4 +35,4 @@ plt.xlabel('Modified Julian Date')
 plt.ylabel('Calibrated Flux')
 
 plt.legend()
-plt.show()'''
+plt.show()
