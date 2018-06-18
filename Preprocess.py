@@ -20,12 +20,10 @@ def getData(folder, filename): #I'm finally using python properly
     return t
     
 def getInfo(info, file):
-    x = ''
     for line in file:
-        line = re.findall(r'%s: ?...' % info, line)
-        if line!=[]:
-            x = line[(len(info)+2)::] #might have extra spaces in front and it's a string
-    return x
+        if line.startswith('%s' % info):
+            return line[(len(info)+2)::] #might have extra spaces in front and it's a string
+    return None
 
 def makeTable(folder):
     #folder: no vs +
@@ -45,7 +43,7 @@ def makeTable(folder):
     for i in infoL:
         table[i] = []
     table['FILENAME'] = []
-    table['DATA'] = []
+    #table['DATA'] = []
     for i in range(totalNum):
         with open(folder + '/' + list[colName][i]) as file:
             table['FILENAME'] += [list[colName][i]]
@@ -65,6 +63,5 @@ def writeFile(folder):
     ascii.write(data, '%s_combined.dat' % folder)
     return None
     
-#writeFile('DES_BLINDnoHOSTZ')
-
-data = makeTable('DES_BLINDnoHOSTZ')
+#data = makeTable('DES_BLINDnoHOSTZ')
+writeFile('DES_BLINDnoHOSTZ')
