@@ -8,7 +8,7 @@ print (lines)
 f.close()
 
 
-rdr = ascii.get_reader(Reader=ascii.Basic)
+'''rdr = ascii.get_reader(Reader=ascii.Basic)
 rdr.header.splitter.delimiter = ' '
 rdr.data.splitter.delimiter = ' '
 rdr.header.start_line = 14
@@ -35,4 +35,4 @@ plt.xlabel('Modified Julian Date')
 plt.ylabel('Calibrated Flux')
 
 plt.legend()
-plt.show()
+plt.show()'''

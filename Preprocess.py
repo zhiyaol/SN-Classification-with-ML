@@ -1,4 +1,5 @@
 from astropy.io import ascii
+from astropy.io import fits
 from astropy.table import Table
 import matplotlib.pyplot as plt
 import re
@@ -17,7 +18,20 @@ def getData(folder, filename): #I'm finally using python properly
         rdr.data.start_line = 15
     rdr.data.end_line = None
     t = rdr.read('%s/%s' % (folder, filename))
-    return t
+    FLT = t['FLT']
+    gFlux = np.array(t['FLUXCAL'][FLT == 'g'])
+    rFlux = np.array(t['FLUXCAL'][FLT == 'r'])
+    iFlux = np.array(t['FLUXCAL'][FLT == 'i'])
+    zFlux = np.array(t['FLUXCAL'][FLT == 'z'])
+    gErr = np.array(t['FLUXCALERR'][FLT == 'g'])
+    rErr = np.array(t['FLUXCALERR'][FLT == 'r'])
+    iErr = np.array(t['FLUXCALERR'][FLT == 'i'])
+    zErr = np.array(t['FLUXCALERR'][FLT == 'z'])
+    #maxL = 
+    #AMJD = 
+    #Result = np.array([maxL, AMJD, gFlux,rFlux,iFlux,zFlux, gErr,rErr,iErr,zErr])
+    Result = np.array([gFlux,rFlux,iFlux,zFlux, gErr,rErr,iErr,zErr])
+    return Result
     
 def getInfo(info, file):
     for line in file:
@@ -43,25 +57,28 @@ def makeTable(folder):
     for i in infoL:
         table[i] = []
     table['FILENAME'] = []
-    #table['DATA'] = []
+    table['DATA'] = []
+    table
     for i in range(totalNum):
         with open(folder + '/' + list[colName][i]) as file:
             table['FILENAME'] += [list[colName][i]]
-            #table['DATA'] += [getData(folder, list[colName][i])]
+            table['DATA'] += [[getData(folder, list[colName][i])]]
             for j in infoL:
                 table[j] += [getInfo(j, file)]
-    infoList = [np.array(table['FILENAME'])]
+    infoList = [table['FILENAME']]
     for i in infoL:
-        infoList += [np.array(table[i])]
-    #infoList += [np.array(table['DATA'])]
-    output = Table(infoList, names = ['FILENAME']+infoL)
-    #output = Table(infoList, names = ['FILENAME']+infoL+['DATA'])
+        infoList += [table[i]]
+    infoList += [table['DATA']]
+    #output = Table(infoList, names = ['FILENAME']+infoL)
+    output = Table(infoList, names = ['FILENAME']+infoL+['DATA'])
     return output
+    
+
     
 def writeFile(folder):
     data = makeTable(folder)
-    ascii.write(data, '%s_combined.dat' % folder)
+    data.write('%s_combined.fits' % folder, format='fits')
     return None
     
-#data = makeTable('DES_BLINDnoHOSTZ')
-writeFile('DES_BLINDnoHOSTZ')
+data = makeTable('DES_BLINDnoHOSTZ')
+#writeFile('DES_BLINDnoHOSTZ')
