@@ -1,11 +1,11 @@
-import numpy as np
+'''import numpy as np
 from astropy.io import ascii
 import matplotlib.pyplot as plt
 
 f = open('DES_BLINDnoHOSTZ/DES_SN000018.DAT', 'r')
 lines = f.read()
 print (lines)
-f.close()
+f.close()'''
 
 
 '''rdr = ascii.get_reader(Reader=ascii.Basic)
@@ -36,3 +36,9 @@ plt.ylabel('Calibrated Flux')
 
 plt.legend()
 plt.show()'''
+import copy
+
+a = [1.2,2.3,3.4]
+for i in range(1,4):
+    print(i)
+    

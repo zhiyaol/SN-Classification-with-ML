@@ -58,13 +58,13 @@ def makeTable(folder):
         table[i] = []
     table['FILENAME'] = []
     table['DATA'] = []
-    table
+    #table
     for i in range(totalNum):
-        with open(folder + '/' + list[colName][i]) as file:
+        with open(folder + '/' + list[colName][i]) as f:
             table['FILENAME'] += [list[colName][i]]
             table['DATA'] += [[getData(folder, list[colName][i])]]
             for j in infoL:
-                table[j] += [getInfo(j, file)]
+                table[j] += [getInfo(j, f)]
     infoList = [table['FILENAME']]
     for i in infoL:
         infoList += [table[i]]
