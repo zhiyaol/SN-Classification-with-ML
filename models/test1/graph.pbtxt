@@ -695,7 +695,7 @@ node {
     key: "dataset_factory"
     value {
       func {
-        name: "_make_dataset_915iadHDDiY"
+        name: "_make_dataset_63FeAhd6Kig"
       }
     }
   }
@@ -38566,7 +38566,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
         }
-        string_val: "_temp_55fb6e7580d343eba006d80362360f2e/part"
+        string_val: "_temp_fa30bb65100243a787bdc8c5873968f5/part"
       }
     }
   }
@@ -40484,71 +40484,7 @@ node {
 library {
   function {
     signature {
-      name: "tf_map_func_cA4RpxTiZJg"
-      input_arg {
-        name: "arg0"
-        type: DT_INT64
-      }
-      output_arg {
-        name: "pyfunc"
-        type: DT_FLOAT
-      }
-      output_arg {
-        name: "pyfunc_0"
-        type: DT_INT32
-      }
-      output_arg {
-        name: "pyfunc_1"
-        type: DT_FLOAT
-      }
-      description: "A wrapper for Defun that facilitates shape inference."
-      is_stateful: true
-    }
-    node_def {
-      name: "PyFunc"
-      op: "PyFunc"
-      input: "arg0"
-      attr {
-        key: "Tin"
-        value {
-          list {
-            type: DT_INT64
-          }
-        }
-      }
-      attr {
-        key: "Tout"
-        value {
-          list {
-            type: DT_FLOAT
-            type: DT_INT32
-            type: DT_FLOAT
-          }
-        }
-      }
-      attr {
-        key: "token"
-        value {
-          s: "pyfunc_1"
-        }
-      }
-    }
-    ret {
-      key: "pyfunc"
-      value: "PyFunc:output:0"
-    }
-    ret {
-      key: "pyfunc_0"
-      value: "PyFunc:output:1"
-    }
-    ret {
-      key: "pyfunc_1"
-      value: "PyFunc:output:2"
-    }
-  }
-  function {
-    signature {
-      name: "_make_dataset_915iadHDDiY"
+      name: "_make_dataset_63FeAhd6Kig"
       output_arg {
         name: "mapdataset"
         type: DT_VARIANT
@@ -40842,7 +40778,7 @@ library {
         key: "f"
         value {
           func {
-            name: "tf_map_func_cA4RpxTiZJg"
+            name: "tf_map_func_ASrDCALAoqM"
           }
         }
       }
@@ -40888,6 +40824,70 @@ library {
     ret {
       key: "mapdataset"
       value: "MapDataset:handle:0"
+    }
+  }
+  function {
+    signature {
+      name: "tf_map_func_ASrDCALAoqM"
+      input_arg {
+        name: "arg0"
+        type: DT_INT64
+      }
+      output_arg {
+        name: "pyfunc"
+        type: DT_FLOAT
+      }
+      output_arg {
+        name: "pyfunc_0"
+        type: DT_INT32
+      }
+      output_arg {
+        name: "pyfunc_1"
+        type: DT_FLOAT
+      }
+      description: "A wrapper for Defun that facilitates shape inference."
+      is_stateful: true
+    }
+    node_def {
+      name: "PyFunc"
+      op: "PyFunc"
+      input: "arg0"
+      attr {
+        key: "Tin"
+        value {
+          list {
+            type: DT_INT64
+          }
+        }
+      }
+      attr {
+        key: "Tout"
+        value {
+          list {
+            type: DT_FLOAT
+            type: DT_INT32
+            type: DT_FLOAT
+          }
+        }
+      }
+      attr {
+        key: "token"
+        value {
+          s: "pyfunc_2"
+        }
+      }
+    }
+    ret {
+      key: "pyfunc"
+      value: "PyFunc:output:0"
+    }
+    ret {
+      key: "pyfunc_0"
+      value: "PyFunc:output:1"
+    }
+    ret {
+      key: "pyfunc_1"
+      value: "PyFunc:output:2"
     }
   }
 }
