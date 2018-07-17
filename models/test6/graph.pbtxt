@@ -695,7 +695,7 @@ node {
     key: "dataset_factory"
     value {
       func {
-        name: "_make_dataset_8MFMkePePEM"
+        name: "_make_dataset_da07s9ZDTSY"
       }
     }
   }
@@ -732,7 +732,7 @@ node {
     value {
       list {
         type: DT_FLOAT
-        type: DT_FLOAT
+        type: DT_INT32
         type: DT_FLOAT
       }
     }
@@ -825,7 +825,7 @@ node {
     value {
       list {
         type: DT_FLOAT
-        type: DT_FLOAT
+        type: DT_INT32
         type: DT_FLOAT
       }
     }
@@ -906,17 +906,17 @@ node {
   attr {
     key: "dtype"
     value {
-      type: DT_FLOAT
+      type: DT_INT32
     }
   }
   attr {
     key: "value"
     value {
       tensor {
-        dtype: DT_FLOAT
+        dtype: DT_INT32
         tensor_shape {
         }
-        float_val: 0.5
+        int_val: 1
       }
     }
   }
@@ -996,17 +996,17 @@ node {
   attr {
     key: "dtype"
     value {
-      type: DT_FLOAT
+      type: DT_INT32
     }
   }
   attr {
     key: "value"
     value {
       tensor {
-        dtype: DT_FLOAT
+        dtype: DT_INT32
         tensor_shape {
         }
-        float_val: 0.5
+        int_val: 1
       }
     }
   }
@@ -1266,38 +1266,9 @@ node {
   }
 }
 node {
-  name: "rnn/ToInt32"
-  op: "Cast"
-  input: "IteratorGetNext:1"
-  attr {
-    key: "DstT"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "SrcT"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-        }
-      }
-    }
-  }
-}
-node {
   name: "rnn/sequence_length"
   op: "Identity"
-  input: "rnn/ToInt32"
+  input: "IteratorGetNext:1"
   attr {
     key: "T"
     value {
@@ -6972,354 +6943,6 @@ node {
   }
 }
 node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/keep_prob"
-  op: "Const"
-  input: "^rnn/while/Identity"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.5
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/Shape"
-  op: "Shape"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "out_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/min"
-  op: "Const"
-  input: "^rnn/while/Identity"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/max"
-  op: "Const"
-  input: "^rnn/while/Identity"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 1.0
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/RandomUniform"
-  op: "RandomUniform"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/Shape"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "seed"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "seed2"
-    value {
-      i: 0
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/sub"
-  op: "Sub"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/max"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/min"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/mul"
-  op: "Mul"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/RandomUniform"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/sub"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform"
-  op: "Add"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/mul"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform/min"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/add"
-  op: "Add"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/keep_prob"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/random_uniform"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/Floor"
-  op: "Floor"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/add"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div"
-  op: "RealDiv"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/keep_prob"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul"
-  op: "Mul"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/Floor"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
   name: "rnn/multi_rnn_cell/cell_1/LSTM/kernel/Initializer/random_uniform/shape"
   op: "Const"
   attr {
@@ -7918,7 +7541,7 @@ node {
 node {
   name: "rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat"
   op: "ConcatV2"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul"
+  input: "rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
   input: "rnn/while/Identity_6"
   input: "rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat/axis"
   attr {
@@ -8528,359 +8151,11 @@ node {
   }
 }
 node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/keep_prob"
-  op: "Const"
-  input: "^rnn/while/Identity"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.5
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/Shape"
-  op: "Shape"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/mul_2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "out_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/min"
-  op: "Const"
-  input: "^rnn/while/Identity"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.0
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/max"
-  op: "Const"
-  input: "^rnn/while/Identity"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 1.0
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/RandomUniform"
-  op: "RandomUniform"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/Shape"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "seed"
-    value {
-      i: 0
-    }
-  }
-  attr {
-    key: "seed2"
-    value {
-      i: 0
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/sub"
-  op: "Sub"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/max"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/min"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/mul"
-  op: "Mul"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/RandomUniform"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/sub"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform"
-  op: "Add"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/mul"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform/min"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/add"
-  op: "Add"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/keep_prob"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/random_uniform"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/Floor"
-  op: "Floor"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/add"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/div"
-  op: "RealDiv"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/mul_2"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/keep_prob"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/mul"
-  op: "Mul"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/div"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/Floor"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
   name: "rnn/while/Select"
   op: "Select"
   input: "rnn/while/GreaterEqual"
   input: "rnn/while/Select/Enter"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_1/dropout/mul"
+  input: "rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/mul_2"
   attr {
     key: "T"
     value {
@@ -8891,7 +8166,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_1/dropout/mul"
+        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/mul_2"
       }
     }
   }
@@ -8925,7 +8200,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_1/dropout/mul"
+        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/mul_2"
       }
     }
   }
@@ -9124,7 +8399,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_1/dropout/mul"
+        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/mul_2"
       }
     }
   }
@@ -9152,7 +8427,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_1/dropout/mul"
+        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/mul_2"
       }
     }
   }
@@ -12076,12 +11351,6 @@ node {
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_grad/BroadcastGradientArgs/StackPushV2"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_grad/BroadcastGradientArgs/StackPushV2_1"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_grad/Mul_1/StackPushV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/StackPushV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/StackPushV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPushV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPushV2_1"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/StackPushV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/StackPushV2"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/MatMul_grad/MatMul_1/StackPushV2"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/add_1_grad/BroadcastGradientArgs/StackPushV2"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/add_1_grad/BroadcastGradientArgs/StackPushV2_1"
@@ -16142,12 +15411,6 @@ node {
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_grad/BroadcastGradientArgs/StackPopV2"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_grad/BroadcastGradientArgs/StackPopV2_1"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_grad/Mul_1/StackPopV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/StackPopV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/StackPopV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2_1"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/StackPopV2"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/StackPopV2"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/MatMul_grad/MatMul_1/StackPopV2"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/add_1_grad/BroadcastGradientArgs/StackPopV2"
   input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/add_1_grad/BroadcastGradientArgs/StackPopV2_1"
@@ -23403,7 +22666,7 @@ node {
 node {
   name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat_grad/Shape"
   op: "Shape"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul"
+  input: "rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
   attr {
     key: "T"
     value {
@@ -23477,7 +22740,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul"
+        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
       }
     }
   }
@@ -23516,7 +22779,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul"
+        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
       }
     }
   }
@@ -23590,7 +22853,7 @@ node {
   name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat_grad/ShapeN/StackPushV2"
   op: "StackPushV2"
   input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat_grad/ShapeN/Enter"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul"
+  input: "rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
   input: "^gradients/Add"
   attr {
     key: "T"
@@ -24098,2173 +23361,10 @@ node {
   }
 }
 node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Shape"
-  op: "Shape"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "out_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Shape_1"
-  op: "Shape"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/Floor"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "out_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs"
-  op: "BroadcastGradientArgs"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-        }
-        shape {
-          dim {
-            size: -1
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Shape"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: -1
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/f_acc"
-  op: "StackV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Shape"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "stack_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPushV2"
-  op: "StackPushV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Shape"
-  input: "^gradients/Add"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "swap_memory"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2"
-  op: "StackPopV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2/Enter"
-  input: "^gradients/Sub"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "gradients/rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/Const_1"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Shape_1"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: -1
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/f_acc_1"
-  op: "StackV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/Const_1"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Shape_1"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "stack_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/Enter_1"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/f_acc_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPushV2_1"
-  op: "StackPushV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/Enter_1"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Shape_1"
-  input: "^gradients/Add"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "swap_memory"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2_1"
-  op: "StackPopV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2_1/Enter"
-  input: "^gradients/Sub"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2_1/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/f_acc_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "gradients/rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul"
-  op: "Mul"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat_grad/tuple/control_dependency"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/StackPopV2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/dropout/Floor"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: -1
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/f_acc"
-  op: "StackV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/dropout/Floor"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "stack_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/StackPushV2"
-  op: "StackPushV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/Enter"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/Floor"
-  input: "^gradients/Add"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "swap_memory"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/StackPopV2"
-  op: "StackPopV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/StackPopV2/Enter"
-  input: "^gradients/Sub"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/StackPopV2/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "gradients/rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Sum"
-  op: "Sum"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          unknown_rank: true
-        }
-      }
-    }
-  }
-  attr {
-    key: "keep_dims"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Reshape"
-  op: "Reshape"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Sum"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tshape"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1"
-  op: "Mul"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/StackPopV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat_grad/tuple/control_dependency"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: -1
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/f_acc"
-  op: "StackV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "stack_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/StackPushV2"
-  op: "StackPushV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/Enter"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div"
-  input: "^gradients/Add"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "swap_memory"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/StackPopV2"
-  op: "StackPopV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/StackPopV2/Enter"
-  input: "^gradients/Sub"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/StackPopV2/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "gradients/rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Sum_1"
-  op: "Sum"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Mul_1"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs:1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          unknown_rank: true
-        }
-      }
-    }
-  }
-  attr {
-    key: "keep_dims"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Reshape_1"
-  op: "Reshape"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Sum_1"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/BroadcastGradientArgs/StackPopV2_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tshape"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/tuple/group_deps"
-  op: "NoOp"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Reshape"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Reshape_1"
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/tuple/control_dependency"
-  op: "Identity"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Reshape"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Reshape"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/tuple/control_dependency_1"
-  op: "Identity"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Reshape_1"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/Reshape_1"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
   name: "gradients/AddN_3"
   op: "AddN"
-  input: "gradients/rnn/while/Select_4_grad/tuple/control_dependency"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat_grad/tuple/control_dependency_1"
-  attr {
-    key: "N"
-    value {
-      i: 2
-    }
-  }
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/Select_4_grad/Select"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Shape"
-  op: "Shape"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "out_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Shape_1"
-  op: "Const"
-  input: "^gradients/Sub"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-          dim {
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs"
-  op: "BroadcastGradientArgs"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/StackPopV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Shape_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-        }
-        shape {
-          dim {
-            size: -1
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Shape"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: -1
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/f_acc"
-  op: "StackV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Shape"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "stack_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/StackPushV2"
-  op: "StackPushV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Shape"
-  input: "^gradients/Add"
-  attr {
-    key: "T"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "swap_memory"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/StackPopV2"
-  op: "StackPopV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/StackPopV2/Enter"
-  input: "^gradients/Sub"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_INT32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/StackPopV2/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "gradients/rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv"
-  op: "RealDiv"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/tuple/control_dependency"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv/Const"
-  op: "Const"
-  input: "^gradients/Sub"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_FLOAT
-        tensor_shape {
-        }
-        float_val: 0.5
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Sum"
-  op: "Sum"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          unknown_rank: true
-        }
-      }
-    }
-  }
-  attr {
-    key: "keep_dims"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Reshape"
-  op: "Reshape"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Sum"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs/StackPopV2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tshape"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg"
-  op: "Neg"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/StackPopV2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/Const"
-  op: "Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "value"
-    value {
-      tensor {
-        dtype: DT_INT32
-        tensor_shape {
-        }
-        int_val: -1
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/f_acc"
-  op: "StackV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/Const"
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "stack_name"
-    value {
-      s: ""
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/StackPushV2"
-  op: "StackPushV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/Enter"
-  input: "rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2"
-  input: "^gradients/Add"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "swap_memory"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/StackPopV2"
-  op: "StackPopV2"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/StackPopV2/Enter"
-  input: "^gradients/Sub"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "elem_type"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/StackPopV2/Enter"
-  op: "Enter"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg/f_acc"
-  attr {
-    key: "T"
-    value {
-      type: DT_RESOURCE
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 2
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "frame_name"
-    value {
-      s: "gradients/rnn/while/while_context"
-    }
-  }
-  attr {
-    key: "is_constant"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "parallel_iterations"
-    value {
-      i: 32
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv_1"
-  op: "RealDiv"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Neg"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv_2"
-  op: "RealDiv"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv_1"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv/Const"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/mul"
-  op: "Mul"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/mul_grad/tuple/control_dependency"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/RealDiv_2"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Sum_1"
-  op: "Sum"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/mul"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/BroadcastGradientArgs:1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tidx"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          unknown_rank: true
-        }
-      }
-    }
-  }
-  attr {
-    key: "keep_dims"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Reshape_1"
-  op: "Reshape"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Sum_1"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Shape_1"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "Tshape"
-    value {
-      type: DT_INT32
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/tuple/group_deps"
-  op: "NoOp"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Reshape"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Reshape_1"
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/tuple/control_dependency"
-  op: "Identity"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Reshape"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Reshape"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/tuple/control_dependency_1"
-  op: "Identity"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Reshape_1"
-  input: "^gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/tuple/group_deps"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_class"
-    value {
-      list {
-        s: "loc:@gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/Reshape_1"
-      }
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/rnn/while/Switch_6_grad_1/NextIteration"
-  op: "NextIteration"
-  input: "gradients/AddN_3"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 128
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "gradients/AddN_4"
-  op: "AddN"
   input: "gradients/rnn/while/Select_2_grad/tuple/control_dependency_1"
-  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/dropout/div_grad/tuple/control_dependency"
+  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat_grad/tuple/control_dependency"
   attr {
     key: "N"
     value {
@@ -26815,7 +23915,7 @@ node {
 node {
   name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2_grad/Mul"
   op: "Mul"
-  input: "gradients/AddN_4"
+  input: "gradients/AddN_3"
   input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2_grad/Mul/StackPopV2"
   attr {
     key: "T"
@@ -27128,7 +24228,7 @@ node {
   name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2_grad/Mul_1"
   op: "Mul"
   input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2_grad/Mul_1/StackPopV2"
-  input: "gradients/AddN_4"
+  input: "gradients/AddN_3"
   attr {
     key: "T"
     value {
@@ -27513,6 +24613,47 @@ node {
   }
 }
 node {
+  name: "gradients/AddN_4"
+  op: "AddN"
+  input: "gradients/rnn/while/Select_4_grad/tuple/control_dependency"
+  input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_1/LSTM/concat_grad/tuple/control_dependency_1"
+  attr {
+    key: "N"
+    value {
+      i: 2
+    }
+  }
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@gradients/rnn/while/Select_4_grad/Select"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 128
+          }
+        }
+      }
+    }
+  }
+}
+node {
   name: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/Sigmoid_2_grad/SigmoidGrad"
   op: "SigmoidGrad"
   input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2_grad/Mul_1/StackPopV2"
@@ -27544,6 +24685,32 @@ node {
   op: "TanhGrad"
   input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2_grad/Mul/StackPopV2"
   input: "gradients/rnn/while/rnn/multi_rnn_cell/cell_0/LSTM/mul_2_grad/tuple/control_dependency_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 128
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "gradients/rnn/while/Switch_6_grad_1/NextIteration"
+  op: "NextIteration"
+  input: "gradients/AddN_4"
   attr {
     key: "T"
     value {
@@ -41399,7 +38566,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
         }
-        string_val: "_temp_34f055d16c754f1389a69001b666fa0a/part"
+        string_val: "_temp_b24e0f04bab04000bb772918b950050e/part"
       }
     }
   }
@@ -43317,7 +40484,7 @@ node {
 library {
   function {
     signature {
-      name: "tf_map_func_GAiXeSJQfWc"
+      name: "tf_map_func_XKxUYs4ukEc"
       input_arg {
         name: "arg0"
         type: DT_INT64
@@ -43328,7 +40495,7 @@ library {
       }
       output_arg {
         name: "pyfunc_0"
-        type: DT_FLOAT
+        type: DT_INT32
       }
       output_arg {
         name: "pyfunc_1"
@@ -43354,7 +40521,7 @@ library {
         value {
           list {
             type: DT_FLOAT
-            type: DT_FLOAT
+            type: DT_INT32
             type: DT_FLOAT
           }
         }
@@ -43362,7 +40529,7 @@ library {
       attr {
         key: "token"
         value {
-          s: "pyfunc_11"
+          s: "pyfunc_0"
         }
       }
     }
@@ -43381,7 +40548,7 @@ library {
   }
   function {
     signature {
-      name: "_make_dataset_8MFMkePePEM"
+      name: "_make_dataset_da07s9ZDTSY"
       output_arg {
         name: "mapdataset"
         type: DT_VARIANT
@@ -43675,7 +40842,7 @@ library {
         key: "f"
         value {
           func {
-            name: "tf_map_func_GAiXeSJQfWc"
+            name: "tf_map_func_XKxUYs4ukEc"
           }
         }
       }
@@ -43712,7 +40879,7 @@ library {
         value {
           list {
             type: DT_FLOAT
-            type: DT_FLOAT
+            type: DT_INT32
             type: DT_FLOAT
           }
         }
